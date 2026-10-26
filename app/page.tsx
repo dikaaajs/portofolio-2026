@@ -85,7 +85,7 @@ const projects = [
   },
   {
     number: "03",
-    title: "attendance website",
+    title: "Attendance Website",
     type: "WEB DEVELOPMENT",
     description:
       "Aplikasi kehadiran berbasis web untuk suatu lembaga. Dibangun dengan UI yang modern dan minimalis",
@@ -475,11 +475,6 @@ export default function Home() {
                   />
                 </div>
               </div>
-
-              <p className="text-xs leading-6 text-zinc-500">
-                Di balik setiap baris kode, selalu ada proses belajar,
-                eksplorasi, dan keinginan untuk membuat sesuatu yang lebih baik.
-              </p>
             </div>
 
             {/* Informasi Tentang Saya */}
@@ -798,7 +793,7 @@ export default function Home() {
                 <p className="mt-1 text-sm text-zinc-400">SMAN 24 Bandung</p>
                 <p className="mt-2 text-xs text-zinc-500">2020 — 2024</p>
                 <p className="mt-4 text-sm leading-6 text-zinc-500">
-                  mempelajari dasar dasar sains
+                  Mempelajari dasar dasar sains dan teknologi
                 </p>
               </div>
             </div>
@@ -921,10 +916,7 @@ export default function Home() {
 
       <footer className="border-t border-white/[0.07] py-6">
         <div className="container-wide flex flex-col items-center justify-between gap-3 text-center sm:flex-row sm:text-left">
-          <p className="text-sm text-zinc-500">
-            © {new Date().getFullYear()} Muhamad Andika Rafli. Dibuat dengan
-            fokus pada detail.
-          </p>
+          <p className="text-sm text-zinc-500">© 2026 Muhamad Andika Rafli.</p>
           <a
             href="#home"
             className="inline-flex items-center gap-2 text-xs text-zinc-400 transition hover:text-white"
