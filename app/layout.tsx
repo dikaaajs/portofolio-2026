@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: "Muhamad Andika Rafli | Frontend Developer",
     description:
       "Jelajahi portfolio, proyek, keahlian, dan pengalaman saya sebagai Frontend Developer.",
-    url: "https://domain-anda.com",
+    url: "https://dikaaa.web.id",
     siteName: "Andika Rafli Portfolio",
     images: [
       {
