@@ -3,6 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Dikaaa | Frontend Developer",
+  metadataBase: new URL("https://dikaaa.web.id"),
   description:
     "Portfolio Muhamad Andika Rafli, Frontend Developer dari Bandung. Berpengalaman membangun website responsif menggunakan Next.js, React, dan Tailwind CSS.",
 
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
     title: "Muhamad Andika Rafli | Frontend Developer",
     description:
       "Jelajahi portfolio, proyek, keahlian, dan pengalaman saya sebagai Frontend Developer.",
-    url: "https://dikaaa.web.id",
+    url: "/",
     siteName: "Andika Rafli Portfolio",
     images: [
       {
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
     title: "Muhamad Andika Rafli | Frontend Developer",
     description:
       "Portfolio Frontend Developer — Next.js, React, dan Tailwind CSS.",
-    images: ["/og-portfolio.png"],
+    images: ["/og-portfolio.jpeg"],
   },
 };
 

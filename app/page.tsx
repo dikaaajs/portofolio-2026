@@ -22,6 +22,7 @@ import {
   Smartphone,
   Globe,
   Layers3,
+  X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProjectGallery } from "@/components/project-gallery";
@@ -86,7 +87,7 @@ const projects = [
   {
     number: "03",
     title: "Attendance Website",
-    type: "WEB DEVELOPMENT",
+    type: "WEB APPLICATION",
     description:
       "Aplikasi kehadiran berbasis web untuk suatu lembaga. Dibangun dengan UI yang modern dan minimalis",
     stack: ["Next.js", "shadcn/ui", "Tailwind CSS"],
@@ -96,10 +97,42 @@ const projects = [
       "/projects/absensi-2.jpg",
       "/projects/absensi-3.png",
     ],
-    accent: "from-fuchsia-500/20 via-violet-500/10 to-transparent",
+    accent: "from-violet-500/20 via-yellow-500/10 to-transparent",
     github: "",
     demo: "",
     note: "Freelance development",
+  },
+  {
+    number: "04",
+    title: "Form Event",
+    type: "WEB APPLICATION",
+    description:
+      "Website pendaftaran suatu event atau acara. Diintegrasi dengan google sheet sehingga client bisa mengolah datanya secara mudah",
+    stack: ["Next.js", "shadcn/ui", "sheet"],
+    icon: Layers3,
+    images: [
+      "/projects/form-1.png",
+      // "/projects/form-2.jpg",
+      "/projects/form-3.png",
+    ],
+    accent: "from-red-500/20 via-blue-500/10 to-transparent",
+    github: "",
+    demo: "",
+    note: "Project experience · Akademi Trainer",
+  },
+  {
+    number: "05",
+    title: "Event Notifier",
+    type: "WEB APPLICATION",
+    description:
+      "Aplikasi untuk penjadwalan dan pengingat acara pada perusahaan",
+    stack: ["Next.js", "shadcn/ui", "Tailwind CSS", "sheet"],
+    icon: Layers3,
+    images: ["/projects/event.png", "/projects/event-2.png"],
+    accent: "from-fuchsia-500/20 via-violet-500/10 to-transparent",
+    github: "",
+    demo: "",
+    note: "Project experience · Akademi Trainer",
   },
 ];
 
@@ -214,11 +247,13 @@ function SectionHeading({
 
 export default function Home() {
   const [showGf, setShowGf] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <main className="overflow-hidden">
       <header className="fixed inset-x-0 top-0 z-50 border-b border-white/[0.07] bg-zinc-950/80 backdrop-blur-xl">
         <nav
-          className="container-wide flex h-[72px] items-center justify-between"
+          className="container-wide flex h-[72px] items-center justify-between relative"
           aria-label="Navigasi utama"
         >
           <a
@@ -231,7 +266,7 @@ export default function Home() {
               alt=""
             />
             <span>
-              andika<span className="text-violet-300">.dev</span>
+              Dik<span className="text-violet-300">aaa</span>
             </span>
           </a>
           <div className="hidden items-center gap-7 text-sm text-zinc-400 md:flex">
@@ -256,13 +291,47 @@ export default function Home() {
               Hubungi Saya <ArrowUpRight size={15} />
             </a>
           </Button>
-          <a
-            href="#contact"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-zinc-200 sm:hidden"
-            aria-label="Ke bagian kontak"
+
+          {/* Tombol hamburger mobile */}
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-zinc-200 transition hover:border-violet-300/40 hover:text-violet-200 sm:hidden"
+            aria-label={mobileMenuOpen ? "Tutup menu" : "Buka menu"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation"
           >
-            <Menu size={19} />
-          </a>
+            {mobileMenuOpen ? <X size={19} /> : <Menu size={19} />}
+          </button>
+
+          {/* Popup navigasi mobile */}
+          <div
+            id="mobile-navigation"
+            className={`absolute left-4 right-4 top-full mt-3 origin-top rounded-2xl border border-white/10 bg-zinc-950/95 p-3 shadow-2xl shadow-black/30 backdrop-blur-xl transition-all duration-200 sm:hidden ${
+              mobileMenuOpen
+                ? "visible translate-y-0 scale-100 opacity-100"
+                : "invisible -translate-y-2 scale-[0.98] opacity-0 pointer-events-none"
+            }`}
+          >
+            {[
+              { label: "Beranda", href: "#home" },
+              { label: "Tentang Saya", href: "#about" },
+              { label: "Proyek", href: "#projects" },
+              { label: "Sertifikat", href: "#certificates" },
+              { label: "Pendidikan", href: "#education" },
+              { label: "Kontak", href: "#contact" },
+            ].map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-between rounded-xl px-4 py-3 text-sm text-zinc-300 transition hover:bg-violet-400/10 hover:text-violet-200"
+              >
+                {item.label}
+                <span className="text-xs text-zinc-600">↗</span>
+              </a>
+            ))}
+          </div>
         </nav>
       </header>
 
