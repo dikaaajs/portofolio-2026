@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --background: #09090b;
+  --foreground: #f4f4f5;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi-Variable.ttf") format("truetype");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Satoshi", sans-serif;
+}
+::selection {
+  background: rgba(167, 139, 250, 0.35);
+  color: white;
+}
+a {
+  text-decoration: none;
+}
+.container-wide {
+  width: min(1120px, calc(100% - 40px));
+  margin-inline: auto;
+}
+.section-pad {
+  padding-block: 100px;
+}
+.eyebrow {
+  color: #c4b5fd;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.grid-glow {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+.glass {
+  background: rgba(24, 24, 27, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(16px);
+}
+.project-card {
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease;
+}
+.project-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(167, 139, 250, 0.4);
+  background: rgba(255, 255, 255, 0.045);
+}
+.text-gradient {
+  background: linear-gradient(110deg, #fafafa 10%, #c4b5fd 58%, #818cf8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@media (max-width: 640px) {
+  .container-wide {
+    width: min(100% - 32px, 1120px);
+  }
+  .section-pad {
+    padding-block: 72px;
+  }
+}
+
+.profile-flip-container {
+  perspective: 1200px;
+  aspect-ratio: 4 / 5;
+  width: 100%;
+  border-radius: 1.5rem;
+}
+
+.profile-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  transform-style: preserve-3d;
+  transition: transform 800ms cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+
+.profile-flip-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.profile-flip-face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 8%);
+  border-radius: inherit;
+  background: #18181b;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.profile-flip-back {
+  transform: rotateY(180deg);
+}
+
+.profile-flip-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 700ms ease;
+}
+
+.profile-flip-container:hover .profile-flip-image {
+  transform: scale(1.03);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profile-flip-inner {
+    transition-duration: 0.01ms;
+  }
+}
