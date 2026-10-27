@@ -658,7 +658,7 @@ export default function Home() {
                     className={`relative overflow-hidden bg-gradient-to-br ${project.accent} px-3 pb-1 pt-4`}
                   >
                     <span className="absolute left-5 top-5 z-20 font-mono text-xs text-white/60">
-                      {project.number} / 03
+                      {project.number} / 0{projects.length}
                     </span>
                     <span className="absolute right-5 top-5 z-20 rounded-full border border-white/10 bg-black/35 px-3 py-1 text-[9px] font-bold tracking-[.14em] text-zinc-300 backdrop-blur">
                       {project.type}
