@@ -38,8 +38,12 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="id">
+    <html lang="id" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var t=localStorage.getItem('portfolio-theme');var l=localStorage.getItem('portfolio-language');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;if(l==='en'||l==='id')document.documentElement.lang=l;}catch(e){}})();` }} />
+      </head>
       <body>{children}</body>
     </html>
   );
 }
+

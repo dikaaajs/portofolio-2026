@@ -138,3 +138,116 @@ a {
     transition-duration: 0.01ms;
   }
 }
+
+
+/* Gentle entrance motion, with visible content as the default fallback. */
+@media (prefers-reduced-motion: no-preference) {
+  #home > .container-wide > * {
+    animation: hero-enter 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  #home > .container-wide > :nth-child(2) {
+    animation-delay: 140ms;
+  }
+
+  [data-reveal] {
+    transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+      translate 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+      transform 250ms ease, border-color 250ms ease, background 250ms ease;
+  }
+
+  [data-reveal="pending"]:not(:focus-within) {
+    opacity: 0;
+    translate: 0 24px;
+  }
+
+  [data-reveal="visible"], [data-reveal="pending"]:focus-within {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  @keyframes hero-enter {
+    from { opacity: 0; translate: 0 18px; }
+    to { opacity: 1; translate: 0 0; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-ping { animation: none; }
+  .project-card, .profile-flip-image { transition: none; }
+  .project-card:hover, .profile-flip-container:hover .profile-flip-image {
+    transform: none;
+  }
+}
+
+
+/* Reading preferences */
+.preference-button {
+  display: inline-flex;
+  height: 40px;
+  min-width: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 10px;
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 4%);
+  color: #e4e4e7;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 200ms, background 200ms;
+}
+.preference-button:hover { border-color: #a78bfa; }
+.preference-button:focus-visible { outline: 2px solid #a78bfa; outline-offset: 3px; }
+
+:root[data-theme="light"] { color-scheme: light; --background: #f8f7fc; --foreground: #181825; }
+[data-theme="light"] header { background: rgb(250 249 255 / 90%); }
+[data-theme="light"] .preference-button { background: #fff; border-color: #ddd9e8; color: #32294a; }
+[data-theme="light"] .glass { background: rgb(255 255 255 / 85%); border-color: #e5e1ef; }
+[data-theme="light"] .grid-glow {
+  background-image: linear-gradient(rgb(76 60 120 / 7%) 1px, transparent 1px), linear-gradient(90deg, rgb(76 60 120 / 7%) 1px, transparent 1px);
+}
+[data-theme="light"] .text-gradient { background-image: linear-gradient(110deg, #272036, #6742bd 58%, #5148b7); }
+[data-theme="light"] [class~="text-white"],
+[data-theme="light"] [class~="text-zinc-200"],
+[data-theme="light"] [class~="text-zinc-300"] { color: #262236; }
+[data-theme="light"] [class~="text-zinc-400"] { color: #514d60; }
+[data-theme="light"] [class~="text-zinc-500"],
+[data-theme="light"] [class~="text-zinc-600"] { color: #686377; }
+[data-theme="light"] [class~="text-violet-200"],
+[data-theme="light"] [class~="text-violet-300"] { color: #6542ab; }
+[data-theme="light"] [class~="text-sky-200"] { color: #03618f; }
+[data-theme="light"] [class~="text-emerald-300"] { color: #08725d; }
+[data-theme="light"] [class~="text-amber-200"],
+[data-theme="light"] [class~="text-orange-200"] { color: #99570c; }
+[data-theme="light"] [class*="border-white/"] { border-color: rgb(65 52 88 / 15%); }
+[data-theme="light"] section[class*="bg-zinc-900/30"] { background: #f0eef8; }
+[data-theme="light"] .project-card,
+[data-theme="light"] [class~="bg-white/[0.02]"],
+[data-theme="light"] [class~="bg-white/[0.03]"],
+[data-theme="light"] [class~="bg-white/[0.05]"] { background-color: rgb(255 255 255 / 86%); }
+[data-theme="light"] .project-card:hover { background: #fff; border-color: #a78bfa; }
+[data-theme="light"] #mobile-navigation { background: rgb(250 249 255 / 98%); }
+[data-theme="light"] .glass [class~="bg-black/20"] { background-color: #f1eff8; }
+[data-theme="light"] [class~="bg-violet-400"][class~="text-zinc-950"] { background-color: #6d48bb; color: #fff; }
+[data-theme="light"] a:hover:not([class~="bg-violet-400"]),
+[data-theme="light"] button:hover:not([class~="bg-violet-400"]) { color: #6842ad; }
+/* Text on photographs and gallery overlays keeps its dark backdrop. */
+[data-theme="light"] .profile-flip-face [class~="text-white"],
+[data-theme="light"] .profile-flip-face [class~="text-zinc-300"],
+[data-theme="light"] .profile-flip-face [class~="text-zinc-200"],
+[data-theme="light"] #certificates article [class~="text-white"],
+[data-theme="light"] #certificates article button,
+[data-theme="light"] #projects .group\/gallery [class~="text-white"],
+[data-theme="light"] [role="dialog"] [class~="text-white"] { color: #fff; }
+[data-theme="light"] #certificates article [class~="text-zinc-400"],
+[data-theme="light"] #certificates article [class~="text-zinc-300"],
+[data-theme="light"] [role="dialog"] [class~="text-zinc-300"],
+[data-theme="light"] [role="dialog"] [class~="text-zinc-500"] { color: #d4d4d8; }
+[data-theme="light"] #certificates article [class~="text-violet-200"],
+[data-theme="light"] #certificates article [class~="text-violet-300"] { color: #ddd6fe; }
+[data-theme="light"] #certificates article [class~="bg-white/10"] { background-color: rgb(255 255 255 / 10%); }
+[data-theme="light"] [role="dialog"] [class*="border-white/"] { border-color: rgb(255 255 255 / 15%); }

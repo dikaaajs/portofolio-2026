@@ -15,9 +15,11 @@ type Certificate = {
 export function CertificateCard({
   cert,
   index,
+  language,
 }: {
   cert: Certificate;
   index: number;
+  language: "id" | "en";
 }) {
   const [showInfo, setShowInfo] = useState(false);
 
@@ -30,7 +32,7 @@ export function CertificateCard({
       {/* Gambar sertifikat */}
       <img
         src={cert.image}
-        alt={`Sertifikat ${cert.title}`}
+        alt={`${language === "en" ? "Certificate" : "Sertifikat"} ${cert.title}`}
         loading="lazy"
         className={`h-full w-full object-contain p-2 transition-all duration-500 ${
           showInfo ? "scale-105 blur-[2px]" : "scale-100"
@@ -41,7 +43,7 @@ export function CertificateCard({
       <button
         type="button"
         onClick={() => setShowInfo((prev) => !prev)}
-        aria-label={showInfo ? "Tutup informasi" : "Lihat informasi sertifikat"}
+        aria-label={showInfo ? (language === "en" ? "Close information" : "Tutup informasi") : (language === "en" ? "View certificate information" : "Lihat informasi sertifikat")}
         aria-expanded={showInfo}
         className="absolute right-2 top-2 z-20 flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-black/60 text-white backdrop-blur-md transition hover:bg-violet-500"
       >
@@ -94,10 +96,11 @@ export function CertificateCard({
           rel="noopener noreferrer"
           className="mt-3 inline-flex w-fit items-center gap-1.5 text-xs font-medium text-violet-300 transition hover:text-white"
         >
-          Lihat sertifikat
+          {language === "en" ? "View certificate" : "Lihat sertifikat"}
           <ExternalLink size={12} />
         </a>
       </div>
     </article>
   );
 }
+
