@@ -138,3 +138,45 @@ a {
     transition-duration: 0.01ms;
   }
 }
+
+
+/* Gentle entrance motion, with visible content as the default fallback. */
+@media (prefers-reduced-motion: no-preference) {
+  #home > .container-wide > * {
+    animation: hero-enter 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  #home > .container-wide > :nth-child(2) {
+    animation-delay: 140ms;
+  }
+
+  [data-reveal] {
+    transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+      translate 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+      transform 250ms ease, border-color 250ms ease, background 250ms ease;
+  }
+
+  [data-reveal="pending"]:not(:focus-within) {
+    opacity: 0;
+    translate: 0 24px;
+  }
+
+  [data-reveal="visible"], [data-reveal="pending"]:focus-within {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  @keyframes hero-enter {
+    from { opacity: 0; translate: 0 18px; }
+    to { opacity: 1; translate: 0 0; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-ping { animation: none; }
+  .project-card, .profile-flip-image { transition: none; }
+  .project-card:hover, .profile-flip-container:hover .profile-flip-image {
+    transform: none;
+  }
+}
