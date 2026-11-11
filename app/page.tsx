@@ -27,7 +27,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ProjectGallery } from "@/components/project-gallery";
 import { CertificateCard } from "@/components/certificate";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const skills = [
   {
@@ -271,6 +271,52 @@ function SectionHeading({
 export default function Home() {
   const [showGf, setShowGf] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (!("IntersectionObserver" in window) ||
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const selectors = [
+      "#about > .container-wide > :first-child",
+      "#about > .container-wide > .grid > *",
+      "#projects > .container-wide > :first-child",
+      "#projects .project-card",
+      "#experience > .container-wide > :first-child",
+      "#experience article",
+      "#certificates > .container-wide > :first-child",
+      "#certificates .grid > article",
+      "#education > .container-wide > :first-child",
+      "#education > .container-wide > .grid > *",
+      "#contact > .container-wide > :first-child",
+      "#contact > .container-wide > .grid > *",
+    ];
+
+    const elements = Array.from(document.querySelectorAll<HTMLElement>(selectors.join(",")));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          (entry.target as HTMLElement).dataset.reveal = "visible";
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: "0px 0px -32px 0px", threshold: 0 });
+
+    elements.forEach((element, index) => {
+      // Content above or already inside the viewport stays visible on hydration.
+      if (element.getBoundingClientRect().top < window.innerHeight) return;
+      element.style.setProperty("--reveal-delay", `${(index % 3) * 70}ms`);
+      element.dataset.reveal = "pending";
+      observer.observe(element);
+    });
+
+    return () => {
+      observer.disconnect();
+      elements.forEach((element) => {
+        delete element.dataset.reveal;
+        element.style.removeProperty("--reveal-delay");
+      });
+    };
+  }, []);
 
   return (
     <main className="overflow-hidden">
