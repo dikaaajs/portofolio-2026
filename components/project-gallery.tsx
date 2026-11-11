@@ -9,7 +9,7 @@ export type ProjectGalleryItem = {
   images: string[];
 };
 
-export function ProjectGallery({ project }: { project: ProjectGalleryItem }) {
+export function ProjectGallery({ project, language }: { project: ProjectGalleryItem; language: "id" | "en" }) {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
   const [mounted, setMounted] = useState(false);
@@ -58,7 +58,7 @@ export function ProjectGallery({ project }: { project: ProjectGalleryItem }) {
   if (!hasImages) {
     return (
       <div className="flex h-[210px] items-center justify-center rounded-2xl border border-dashed border-white/10 text-sm text-zinc-500">
-        Belum ada foto proyek
+        {language === "en" ? "No project photos yet" : "Belum ada foto proyek"}
       </div>
     );
   }
@@ -73,7 +73,7 @@ export function ProjectGallery({ project }: { project: ProjectGalleryItem }) {
           setOpen(true);
         }}
         className="group/gallery relative block w-full rounded-2xl text-left outline-none focus-visible:ring-2 focus-visible:ring-violet-300"
-        aria-label={`Buka album ${project.title}`}
+        aria-label={`${language === "en" ? "Open album" : "Buka album"} ${project.title}`}
       >
         <div className="relative mx-auto h-[210px] w-full max-w-[360px]">
           {images
@@ -95,13 +95,13 @@ export function ProjectGallery({ project }: { project: ProjectGalleryItem }) {
           <div className="absolute inset-0 z-10 flex items-center justify-center rounded-2xl bg-zinc-950/10 opacity-0 transition group-hover/gallery:bg-zinc-950/35 group-hover/gallery:opacity-100">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-zinc-950/90 px-4 py-2.5 text-sm font-medium text-white shadow-xl">
               <ZoomIn size={16} />
-              Buka album
+              {language === "en" ? "Open album" : "Buka album"}
             </span>
           </div>
 
           <span className="absolute bottom-2 right-2 z-20 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-zinc-950/90 px-3 py-1.5 text-xs text-white">
             <Images size={13} />
-            {images.length} foto
+            {images.length} {language === "en" ? "photos" : "foto"}
           </span>
         </div>
       </button>
@@ -114,7 +114,7 @@ export function ProjectGallery({ project }: { project: ProjectGalleryItem }) {
             className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 p-3 backdrop-blur-md sm:p-6"
             role="dialog"
             aria-modal="true"
-            aria-label={`Galeri ${project.title}`}
+            aria-label={`${language === "en" ? "Gallery" : "Galeri"} ${project.title}`}
             onMouseDown={(event) => {
               if (event.target === event.currentTarget) {
                 setOpen(false);
@@ -129,7 +129,7 @@ export function ProjectGallery({ project }: { project: ProjectGalleryItem }) {
                     {project.title}
                   </h3>
                   <p className="mt-1 text-xs text-zinc-500">
-                    Foto {active + 1} dari {images.length}
+                    {language === "en" ? "Photo" : "Foto"} {active + 1} {language === "en" ? "of" : "dari"} {images.length}
                   </p>
                 </div>
 
@@ -137,7 +137,7 @@ export function ProjectGallery({ project }: { project: ProjectGalleryItem }) {
                   type="button"
                   onClick={() => setOpen(false)}
                   className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 text-zinc-300 transition hover:bg-white/10 hover:text-white"
-                  aria-label="Tutup galeri"
+                  aria-label={language === "en" ? "Close gallery" : "Tutup galeri"}
                 >
                   <X size={19} />
                 </button>
@@ -148,7 +148,7 @@ export function ProjectGallery({ project }: { project: ProjectGalleryItem }) {
                 <img
                   key={images[active]}
                   src={images[active]}
-                  alt={`${project.title} — foto ${active + 1}`}
+                  alt={`${project.title} — ${language === "en" ? "photo" : "foto"} ${active + 1}`}
                   className="block max-h-[55dvh] max-w-full rounded-xl object-contain sm:max-h-[62dvh]"
                 />
 
@@ -157,7 +157,7 @@ export function ProjectGallery({ project }: { project: ProjectGalleryItem }) {
                     <button
                       type="button"
                       onClick={previous}
-                      aria-label="Foto sebelumnya"
+                      aria-label={language === "en" ? "Previous photo" : "Foto sebelumnya"}
                       className="absolute left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-zinc-900/95 text-white shadow-lg transition hover:bg-violet-500 sm:left-6 sm:h-12 sm:w-12"
                     >
                       <ChevronLeft size={22} />
@@ -166,7 +166,7 @@ export function ProjectGallery({ project }: { project: ProjectGalleryItem }) {
                     <button
                       type="button"
                       onClick={next}
-                      aria-label="Foto berikutnya"
+                      aria-label={language === "en" ? "Next photo" : "Foto berikutnya"}
                       className="absolute right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-zinc-900/95 text-white shadow-lg transition hover:bg-violet-500 sm:right-6 sm:h-12 sm:w-12"
                     >
                       <ChevronRight size={22} />
@@ -183,7 +183,7 @@ export function ProjectGallery({ project }: { project: ProjectGalleryItem }) {
                       key={`${src}-thumb-${i}`}
                       type="button"
                       onClick={() => setActive(i)}
-                      aria-label={`Pilih foto ${i + 1}`}
+                      aria-label={`${language === "en" ? "Select photo" : "Pilih foto"} ${i + 1}`}
                       aria-current={active === i ? "true" : undefined}
                       className={`relative h-14 w-20 shrink-0 overflow-hidden rounded-lg border-2 transition sm:h-16 sm:w-24 ${
                         active === i
@@ -207,3 +207,4 @@ export function ProjectGallery({ project }: { project: ProjectGalleryItem }) {
     </>
   );
 }
+
