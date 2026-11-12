@@ -32,23 +32,37 @@ import { CertificateCard } from "@/components/certificate";
 import { useEffect, useState } from "react";
 
 const englishContent: Record<string, string> = {
-  "WebApp untuk UMKM bisa membuat websitenya sendiri. Sudah tersedia landing page dan admin page. Jadi user bisa mengelola data produknya tanpa menyentuh kodenya lagi": "A web app that helps small businesses create a website and manage products through a landing page and an admin panel without editing code.",
-  "Aplikasi mobile untuk membantu orang tua, guru, dan siswa memantau perkembangan akademik serta aktivitas siswa.": "A mobile app that helps parents, teachers, and students follow academic progress and student activities.",
-  "Aplikasi kehadiran berbasis web untuk suatu lembaga. Dibangun dengan UI yang modern dan minimalis": "A web-based attendance application with a modern, minimal interface.",
-  "Website pendaftaran suatu event atau acara. Diintegrasi dengan google sheet sehingga client bisa mengolah datanya secara mudah": "An event registration website integrated with Google Sheets for easy data management.",
-  "Aplikasi untuk penjadwalan dan pengingat acara pada perusahaan": "An application for scheduling and reminding teams about company events.",
-  "Kontrak": "Contract",
+  "WebApp untuk UMKM bisa membuat websitenya sendiri. Sudah tersedia landing page dan admin page. Jadi user bisa mengelola data produknya tanpa menyentuh kodenya lagi":
+    "A web app that helps small businesses create a website and manage products through a landing page and an admin panel without editing code.",
+  "Aplikasi mobile untuk membantu orang tua, guru, dan siswa memantau perkembangan akademik serta aktivitas siswa.":
+    "A mobile app that helps parents, teachers, and students follow academic progress and student activities.",
+  "Aplikasi kehadiran berbasis web untuk suatu lembaga. Dibangun dengan UI yang modern dan minimalis":
+    "A web-based attendance application with a modern, minimal interface.",
+  "Website pendaftaran suatu event atau acara. Diintegrasi dengan google sheet sehingga client bisa mengolah datanya secara mudah":
+    "An event registration website integrated with Google Sheets for easy data management.",
+  "Aplikasi untuk penjadwalan dan pengingat acara pada perusahaan":
+    "An application for scheduling and reminding teams about company events.",
+  Kontrak: "Contract",
   "Agu 2026 — Sekarang": "Aug 2026 — Present",
   "Jan 2023 — Sekarang": "Jan 2023 — Present",
-  "Menyiapkan dan mengonfigurasi perangkat, sistem, serta platform digital untuk event pelatihan.": "Set up and configured equipment, systems, and digital platforms for training events.",
-  "Memberikan dukungan teknis selama persiapan dan pelaksanaan event untuk meminimalkan gangguan.": "Provided technical support before and during events to minimize disruptions.",
-  "Mengidentifikasi kendala teknis dan menentukan solusi sesuai kebutuhan operasional.": "Identified technical issues and developed solutions for operational needs.",
-  "Membangun dashboard admin dengan Next.js dan Tailwind CSS untuk pengelolaan data siswa.": "Built an admin dashboard with Next.js and Tailwind CSS for managing student data.",
-  "Mengembangkan aplikasi mobile Flutter untuk pemantauan perkembangan akademik dan aktivitas siswa.": "Developed a Flutter mobile app to monitor academic progress and student activities.",
-  "Mengintegrasikan web dan mobile dengan backend melalui REST API serta berkolaborasi dengan tim desain dan backend.": "Integrated web and mobile apps with backend REST APIs and collaborated with design and backend teams.",
-  "Membangun antarmuka web responsif dan modular menggunakan Next.js, Tailwind CSS, dan shadcn/ui.": "Built responsive, modular web interfaces using Next.js, Tailwind CSS, and shadcn/ui.",
-  "Mengintegrasikan frontend dengan REST API, termasuk pemetaan data dan penanganan respons backend.": "Integrated frontends with REST APIs, including data mapping and response handling.",
-  "Menerjemahkan kebutuhan klien menjadi solusi digital dari tahap analisis hingga implementasi.": "Turned client needs into digital solutions from analysis through implementation."
+  "Menyiapkan dan mengonfigurasi perangkat, sistem, serta platform digital untuk event pelatihan.":
+    "Set up and configured equipment, systems, and digital platforms for training events.",
+  "Memberikan dukungan teknis selama persiapan dan pelaksanaan event untuk meminimalkan gangguan.":
+    "Provided technical support before and during events to minimize disruptions.",
+  "Mengidentifikasi kendala teknis dan menentukan solusi sesuai kebutuhan operasional.":
+    "Identified technical issues and developed solutions for operational needs.",
+  "Membangun dashboard admin dengan Next.js dan Tailwind CSS untuk pengelolaan data siswa.":
+    "Built an admin dashboard with Next.js and Tailwind CSS for managing student data.",
+  "Mengembangkan aplikasi mobile Flutter untuk pemantauan perkembangan akademik dan aktivitas siswa.":
+    "Developed a Flutter mobile app to monitor academic progress and student activities.",
+  "Mengintegrasikan web dan mobile dengan backend melalui REST API serta berkolaborasi dengan tim desain dan backend.":
+    "Integrated web and mobile apps with backend REST APIs and collaborated with design and backend teams.",
+  "Membangun antarmuka web responsif dan modular menggunakan Next.js, Tailwind CSS, dan shadcn/ui.":
+    "Built responsive, modular web interfaces using Next.js, Tailwind CSS, and shadcn/ui.",
+  "Mengintegrasikan frontend dengan REST API, termasuk pemetaan data dan penanganan respons backend.":
+    "Integrated frontends with REST APIs, including data mapping and response handling.",
+  "Menerjemahkan kebutuhan klien menjadi solusi digital dari tahap analisis hingga implementasi.":
+    "Turned client needs into digital solutions from analysis through implementation.",
 };
 
 const skills = [
@@ -83,8 +97,9 @@ const projects = [
     stack: ["Next.js", "Tailwind CSS", "REST API"],
     icon: MonitorSmartphone,
     images: [
-      "/projects/ecom-1.png",
-      "/projects/ecom-2.png",
+      "/projects/ecom-1.jpg",
+      "/projects/ecom-2.jpg",
+      "/projects/ecom-3.jpg",
       "/projects/ecom-4.png",
       "/projects/ecom-5.png",
     ],
@@ -297,7 +312,9 @@ export default function Home() {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
 
   useEffect(() => {
-    setTheme(document.documentElement.dataset.theme === "light" ? "light" : "dark");
+    setTheme(
+      document.documentElement.dataset.theme === "light" ? "light" : "dark",
+    );
     setLanguage(document.documentElement.lang === "en" ? "en" : "id");
   }, []);
 
@@ -305,19 +322,26 @@ export default function Home() {
     const next = theme === "dark" ? "light" : "dark";
     setTheme(next);
     document.documentElement.dataset.theme = next;
-    try { localStorage.setItem("portfolio-theme", next); } catch {}
+    try {
+      localStorage.setItem("portfolio-theme", next);
+    } catch {}
   };
   const toggleLanguage = () => {
     const next = language === "id" ? "en" : "id";
     setLanguage(next);
     document.documentElement.lang = next;
-    try { localStorage.setItem("portfolio-language", next); } catch {}
+    try {
+      localStorage.setItem("portfolio-language", next);
+    } catch {}
   };
-  const t = (id: string, en: string) => language === "en" ? en : id;
+  const t = (id: string, en: string) => (language === "en" ? en : id);
 
   useEffect(() => {
-    if (!("IntersectionObserver" in window) ||
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (
+      !("IntersectionObserver" in window) ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    )
+      return;
 
     const selectors = [
       "#about > .container-wide > :first-child",
@@ -334,15 +358,20 @@ export default function Home() {
       "#contact > .container-wide > .grid > *",
     ];
 
-    const elements = Array.from(document.querySelectorAll<HTMLElement>(selectors.join(",")));
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          (entry.target as HTMLElement).dataset.reveal = "visible";
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { rootMargin: "0px 0px -32px 0px", threshold: 0 });
+    const elements = Array.from(
+      document.querySelectorAll<HTMLElement>(selectors.join(",")),
+    );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            (entry.target as HTMLElement).dataset.reveal = "visible";
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -32px 0px", threshold: 0 },
+    );
 
     elements.forEach((element, index) => {
       // Content above or already inside the viewport stays visible on hydration.
@@ -397,37 +426,72 @@ export default function Home() {
             <a className="transition hover:text-white" href="#education">
               {t("Pendidikan", "Education")}
             </a>
-            <a className="transition hover:text-white xl:hidden" href="#contact">
+            <a
+              className="transition hover:text-white xl:hidden"
+              href="#contact"
+            >
               {t("Kontak", "Contact")}
             </a>
           </div>
           <div className="flex items-center gap-2">
-            <button type="button" onClick={toggleLanguage}
-              className="preference-button" aria-label={t("Ubah bahasa ke Inggris", "Switch language to Indonesian")}
-              title={t("Ubah bahasa ke Inggris", "Switch language to Indonesian")}>
-              <Globe size={16} aria-hidden="true" /> <span>{language.toUpperCase()}</span>
+            <button
+              type="button"
+              onClick={toggleLanguage}
+              className="preference-button"
+              aria-label={t(
+                "Ubah bahasa ke Inggris",
+                "Switch language to Indonesian",
+              )}
+              title={t(
+                "Ubah bahasa ke Inggris",
+                "Switch language to Indonesian",
+              )}
+            >
+              <Globe size={16} aria-hidden="true" />{" "}
+              <span>{language.toUpperCase()}</span>
             </button>
-            <button type="button" onClick={toggleTheme} className="preference-button"
-              aria-label={theme === "dark" ? t("Aktifkan tema terang", "Switch to light theme") : t("Aktifkan tema gelap", "Switch to dark theme")}
-              title={theme === "dark" ? t("Tema terang", "Light theme") : t("Tema gelap", "Dark theme")}>
-              {theme === "dark" ? <Sun size={17} aria-hidden="true" /> : <Moon size={17} aria-hidden="true" />}
+            <button
+              type="button"
+              onClick={toggleTheme}
+              className="preference-button"
+              aria-label={
+                theme === "dark"
+                  ? t("Aktifkan tema terang", "Switch to light theme")
+                  : t("Aktifkan tema gelap", "Switch to dark theme")
+              }
+              title={
+                theme === "dark"
+                  ? t("Tema terang", "Light theme")
+                  : t("Tema gelap", "Dark theme")
+              }
+            >
+              {theme === "dark" ? (
+                <Sun size={17} aria-hidden="true" />
+              ) : (
+                <Moon size={17} aria-hidden="true" />
+              )}
             </button>
             <Button asChild size="sm" className="hidden xl:inline-flex">
-              <a href="#contact">{t("Hubungi Saya", "Contact Me")} <ArrowUpRight size={15} /></a>
+              <a href="#contact">
+                {t("Hubungi Saya", "Contact Me")} <ArrowUpRight size={15} />
+              </a>
             </Button>
 
-          {/* Tombol hamburger mobile */}
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen((prev) => !prev)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-zinc-200 transition hover:border-violet-300/40 hover:text-violet-200 lg:hidden"
-            aria-label={mobileMenuOpen ? t("Tutup menu", "Close menu") : t("Buka menu", "Open menu")}
-            aria-expanded={mobileMenuOpen}
-            aria-controls="mobile-navigation"
-          >
-            {mobileMenuOpen ? <X size={19} /> : <Menu size={19} />}
-          </button>
-
+            {/* Tombol hamburger mobile */}
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen((prev) => !prev)}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-zinc-200 transition hover:border-violet-300/40 hover:text-violet-200 lg:hidden"
+              aria-label={
+                mobileMenuOpen
+                  ? t("Tutup menu", "Close menu")
+                  : t("Buka menu", "Open menu")
+              }
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-navigation"
+            >
+              {mobileMenuOpen ? <X size={19} /> : <Menu size={19} />}
+            </button>
           </div>
 
           {/* Popup navigasi mobile */}
@@ -478,7 +542,10 @@ export default function Home() {
               Open to interesting opportunities
             </div>
             <p className="mb-4 text-sm font-medium tracking-wide text-zinc-400">
-              {t("Halo, saya Muhamad Andika Rafli 👋", "Hi, I’m Muhamad Andika Rafli 👋")}
+              {t(
+                "Halo, saya Muhamad Andika Rafli 👋",
+                "Hi, I’m Muhamad Andika Rafli 👋",
+              )}
             </p>
             <h1 className="max-w-3xl text-5xl font-semibold leading-[1.08] tracking-[-0.055em] text-white sm:text-6xl md:text-7xl">
               Building digital
@@ -486,17 +553,22 @@ export default function Home() {
               <span className="text-gradient">matter.</span>
             </h1>
             <p className="mt-7 max-w-xl text-base leading-8 text-zinc-400 sm:text-lg">
-              {t("Frontend Developer yang berfokus membangun antarmuka web responsif, intuitif, dan mudah dikembangkan dengan teknologi modern.", "Frontend Developer focused on building responsive, intuitive, and maintainable web interfaces with modern technology.")}
+              {t(
+                "Frontend Developer yang berfokus membangun antarmuka web responsif, intuitif, dan mudah dikembangkan dengan teknologi modern.",
+                "Frontend Developer focused on building responsive, intuitive, and maintainable web interfaces with modern technology.",
+              )}
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg">
                 <a href="#projects">
-                  {t("Jelajahi Proyek", "Explore Projects")} <ArrowDownRight size={17} />
+                  {t("Jelajahi Proyek", "Explore Projects")}{" "}
+                  <ArrowDownRight size={17} />
                 </a>
               </Button>
               <Button asChild variant="outline" size="lg">
                 <a href="#contact">
-                  {t("Mari Terhubung", "Let’s Connect")} <ArrowUpRight size={17} />
+                  {t("Mari Terhubung", "Let’s Connect")}{" "}
+                  <ArrowUpRight size={17} />
                 </a>
               </Button>
             </div>
@@ -506,7 +578,8 @@ export default function Home() {
               </span>
               <span className="hidden h-1 w-1 rounded-full bg-zinc-700 sm:block" />
               <span className="inline-flex items-center gap-2">
-                <Code2 size={15} /> {t("3+ tahun pengalaman", "3+ years of experience")}
+                <Code2 size={15} />{" "}
+                {t("3+ tahun pengalaman", "3+ years of experience")}
               </span>
             </div>
           </div>
@@ -583,7 +656,10 @@ export default function Home() {
           <SectionHeading
             eyebrow={t("01 / Tentang Saya", "01 / About Me")}
             title={t("Membangun dengan tujuan.", "Building with purpose.")}
-            description={t("Saya menggabungkan ketelitian teknis dan perhatian terhadap detail untuk menghadirkan produk digital yang nyaman digunakan.", "I combine technical care and attention to detail to create digital products that are a pleasure to use.")}
+            description={t(
+              "Saya menggabungkan ketelitian teknis dan perhatian terhadap detail untuk menghadirkan produk digital yang nyaman digunakan.",
+              "I combine technical care and attention to detail to create digital products that are a pleasure to use.",
+            )}
           />
 
           <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
@@ -592,7 +668,10 @@ export default function Home() {
               <div
                 onDoubleClick={() => setShowGf((prev) => !prev)}
                 className="profile-flip-container group cursor-pointer"
-                title={t("Double-click untuk melihat profil", "Double-click to view profile")}
+                title={t(
+                  "Double-click untuk melihat profil",
+                  "Double-click to view profile",
+                )}
               >
                 <div
                   className={`profile-flip-inner ${showGf ? "is-flipped" : ""}`}
@@ -654,7 +733,10 @@ export default function Home() {
                 <div className="group overflow-hidden rounded-2xl border border-white/[0.08] bg-zinc-900">
                   <img
                     src="/images/profile/profile-02.jpeg"
-                    alt={t("Andika dalam aktivitas sehari-hari", "Andika in everyday life")}
+                    alt={t(
+                      "Andika dalam aktivitas sehari-hari",
+                      "Andika in everyday life",
+                    )}
                     loading="lazy"
                     className="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-105"
                   />
@@ -676,16 +758,27 @@ export default function Home() {
               <div className="space-y-5 text-[15px] leading-8 text-zinc-400">
                 <p>
                   {t("Saya", "I'm")}{" "}
-                  <strong className="font-medium text-white">Muhamad Andika Rafli</strong>
-                  {t(", Frontend Developer dari Bandung dengan pengalaman 3+ tahun sebagai freelancer sejak Januari 2023.", ", a Frontend Developer from Bandung with over three years of freelance experience since January 2023.")}
+                  <strong className="font-medium text-white">
+                    Muhamad Andika Rafli
+                  </strong>
+                  {t(
+                    ", Frontend Developer dari Bandung dengan pengalaman 3+ tahun sebagai freelancer sejak Januari 2023.",
+                    ", a Frontend Developer from Bandung with over three years of freelance experience since January 2023.",
+                  )}
                 </p>
 
                 <p>
-                  {t("Saya terbiasa membangun antarmuka web responsif menggunakan Next.js, React, Tailwind CSS, dan shadcn/ui, serta mengembangkan aplikasi mobile dengan Flutter. Saya juga berpengalaman mengintegrasikan frontend dengan REST API dan berkolaborasi bersama tim desain maupun backend.", "I build responsive web interfaces with Next.js, React, Tailwind CSS, and shadcn/ui, as well as mobile applications with Flutter. I also integrate frontends with REST APIs and collaborate with design and backend teams.")}
+                  {t(
+                    "Saya terbiasa membangun antarmuka web responsif menggunakan Next.js, React, Tailwind CSS, dan shadcn/ui, serta mengembangkan aplikasi mobile dengan Flutter. Saya juga berpengalaman mengintegrasikan frontend dengan REST API dan berkolaborasi bersama tim desain maupun backend.",
+                    "I build responsive web interfaces with Next.js, React, Tailwind CSS, and shadcn/ui, as well as mobile applications with Flutter. I also integrate frontends with REST APIs and collaborate with design and backend teams.",
+                  )}
                 </p>
 
                 <p>
-                  {t("Bagi saya, produk digital yang baik bukan hanya terlihat menarik, tetapi juga mudah digunakan, konsisten, dan dapat dikembangkan seiring kebutuhan.", "To me, a good digital product is attractive, easy to use, consistent, and able to grow with changing needs.")}
+                  {t(
+                    "Bagi saya, produk digital yang baik bukan hanya terlihat menarik, tetapi juga mudah digunakan, konsisten, dan dapat dikembangkan seiring kebutuhan.",
+                    "To me, a good digital product is attractive, easy to use, consistent, and able to grow with changing needs.",
+                  )}
                 </p>
 
                 <div className="flex flex-wrap gap-5 pt-1">
@@ -722,7 +815,12 @@ export default function Home() {
                   >
                     <h3 className="mb-4 flex items-center gap-2 text-sm font-semibold text-white">
                       <Code2 size={16} className="text-violet-300" />
-                      {t(skill.title, skill.title === "Integrasi & Backend" ? "Integration & Backend" : skill.title)}
+                      {t(
+                        skill.title,
+                        skill.title === "Integrasi & Backend"
+                          ? "Integration & Backend"
+                          : skill.title,
+                      )}
                     </h3>
 
                     <div className="flex flex-wrap gap-2">
@@ -752,7 +850,10 @@ export default function Home() {
             <SectionHeading
               eyebrow="02 / Selected Work"
               title={t("Proyek pilihan.", "Selected projects.")}
-              description={t("Beberapa contoh proyek berdasarkan pengalaman pengembangan web dan aplikasi. Tautan demo dan repository dapat ditambahkan setelah dipastikan.", "A selection of web and mobile applications from my development experience.")}
+              description={t(
+                "Beberapa contoh proyek berdasarkan pengalaman pengembangan web dan aplikasi. Tautan demo dan repository dapat ditambahkan setelah dipastikan.",
+                "A selection of web and mobile applications from my development experience.",
+              )}
             />
             <a
               href="https://github.com/dikaaajs"
@@ -760,7 +861,8 @@ export default function Home() {
               rel="noreferrer"
               className="mb-12 inline-flex shrink-0 items-center gap-2 text-sm font-medium text-violet-200 transition hover:text-white"
             >
-              {t("Semua repository", "All repositories")} <ArrowUpRight size={16} />
+              {t("Semua repository", "All repositories")}{" "}
+              <ArrowUpRight size={16} />
             </a>
           </div>
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -794,7 +896,10 @@ export default function Home() {
                       {project.title}
                     </h3>
                     <p className="mt-3 flex-1 text-sm leading-7 text-zinc-400">
-                      {language === "en" ? (englishContent[project.description] ?? project.description) : project.description}
+                      {language === "en"
+                        ? (englishContent[project.description] ??
+                          project.description)
+                        : project.description}
                     </p>
                     <div className="mt-5 flex flex-wrap gap-2">
                       {project.stack.map((s) => (
@@ -822,7 +927,8 @@ export default function Home() {
                             target="_blank"
                             rel="noreferrer"
                           >
-                            <Github size={14} /> {t("Lihat GitHub", "View GitHub")}
+                            <Github size={14} />{" "}
+                            {t("Lihat GitHub", "View GitHub")}
                           </a>
                         </Button>
                       ) : (
@@ -870,7 +976,10 @@ export default function Home() {
           <SectionHeading
             eyebrow={t("03 / Pengalaman", "03 / Experience")}
             title={t("Perjalanan profesional.", "Professional journey.")}
-            description={t("Pengalaman mengerjakan produk digital, berkolaborasi lintas tim, dan mendukung kebutuhan teknologi.", "Experience building digital products, collaborating across teams, and supporting technology needs.")}
+            description={t(
+              "Pengalaman mengerjakan produk digital, berkolaborasi lintas tim, dan mendukung kebutuhan teknologi.",
+              "Experience building digital products, collaborating across teams, and supporting technology needs.",
+            )}
           />
           <div className="relative ml-2 space-y-10 border-l border-white/10 pl-7 sm:ml-4 sm:pl-10">
             {experience.map((job) => (
@@ -880,7 +989,9 @@ export default function Home() {
                   <div>
                     <p className="text-xs font-medium text-violet-200">
                       {job.company} <span className="text-zinc-600">·</span>{" "}
-                      {language === "en" ? (englishContent[job.type] ?? job.type) : job.type}
+                      {language === "en"
+                        ? (englishContent[job.type] ?? job.type)
+                        : job.type}
                     </p>
                     <h3 className="mt-2 text-xl font-semibold text-white sm:text-2xl">
                       {job.role}
@@ -892,7 +1003,9 @@ export default function Home() {
                   </div>
                   <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/[0.08] px-3 py-1.5 text-xs text-zinc-400">
                     <CalendarDays size={13} />
-                    {language === "en" ? (englishContent[job.date] ?? job.date) : job.date}
+                    {language === "en"
+                      ? (englishContent[job.date] ?? job.date)
+                      : job.date}
                   </span>
                 </div>
                 <ul className="mt-5 space-y-3">
@@ -905,7 +1018,9 @@ export default function Home() {
                         size={16}
                         className="mt-1 shrink-0 text-violet-300"
                       />
-                      {language === "en" ? (englishContent[point] ?? point) : point}
+                      {language === "en"
+                        ? (englishContent[point] ?? point)
+                        : point}
                     </li>
                   ))}
                 </ul>
@@ -922,13 +1037,24 @@ export default function Home() {
         <div className="container-wide">
           <SectionHeading
             eyebrow={t("04 / Sertifikat", "04 / Certificates")}
-            title={t("Terus belajar, terus bertumbuh.", "Always learning, always growing.")}
-            description={t("Sertifikasi yang mendukung pengembangan kemampuan teknis dan pemahaman desain antarmuka.", "Certifications supporting my technical skills and understanding of interface design.")}
+            title={t(
+              "Terus belajar, terus bertumbuh.",
+              "Always learning, always growing.",
+            )}
+            description={t(
+              "Sertifikasi yang mendukung pengembangan kemampuan teknis dan pemahaman desain antarmuka.",
+              "Certifications supporting my technical skills and understanding of interface design.",
+            )}
           />
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {certificates.map((cert, i) => (
-              <CertificateCard key={cert.title} cert={cert} index={i} language={language} />
+              <CertificateCard
+                key={cert.title}
+                cert={cert}
+                index={i}
+                language={language}
+              />
             ))}
           </div>
         </div>
@@ -937,7 +1063,10 @@ export default function Home() {
       <section id="education" className="section-pad">
         <div className="container-wide">
           <SectionHeading
-            eyebrow={t("05 / Pendidikan & Organisasi", "05 / Education & Organizations")}
+            eyebrow={t(
+              "05 / Pendidikan & Organisasi",
+              "05 / Education & Organizations",
+            )}
             title={t("Fondasi untuk berkembang.", "A foundation for growth.")}
           />
           <div className="grid gap-5 lg:grid-cols-2">
@@ -957,7 +1086,10 @@ export default function Home() {
               {/* Pendidikan Tinggi */}
               <div className="border-l border-violet-300/30 pl-5">
                 <h4 className="font-semibold text-white">
-                  {t("S1 - Sistem Informasi", "Bachelor’s in Information Systems")}
+                  {t(
+                    "S1 - Sistem Informasi",
+                    "Bachelor’s in Information Systems",
+                  )}
                 </h4>
                 <p className="mt-1 text-sm text-zinc-400">
                   Universitas Terbuka · Jakarta
@@ -966,7 +1098,10 @@ export default function Home() {
                   {t("Agu 2026 — Sekarang", "Aug 2026 — Present")}
                 </p>
                 <p className="mt-4 text-sm leading-6 text-zinc-500">
-                  {t("Mendalami sistem informasi dan penerapan teknologi untuk mendukung kebutuhan organisasi.", "Studying information systems and how technology supports organizational needs.")}
+                  {t(
+                    "Mendalami sistem informasi dan penerapan teknologi untuk mendukung kebutuhan organisasi.",
+                    "Studying information systems and how technology supports organizational needs.",
+                  )}
                 </p>
               </div>
 
@@ -974,11 +1109,16 @@ export default function Home() {
 
               {/* SMA */}
               <div className="border-l border-violet-300/30 pl-5">
-                <h4 className="font-semibold text-white">{t("SMA - MIPA", "High School - Science")}</h4>
+                <h4 className="font-semibold text-white">
+                  {t("SMA - MIPA", "High School - Science")}
+                </h4>
                 <p className="mt-1 text-sm text-zinc-400">SMAN 24 Bandung</p>
                 <p className="mt-2 text-xs text-zinc-500">2020 — 2024</p>
                 <p className="mt-4 text-sm leading-6 text-zinc-500">
-                  {t("Mempelajari dasar dasar sains dan teknologi", "Studied the foundations of science and technology.")}
+                  {t(
+                    "Mempelajari dasar dasar sains dan teknologi",
+                    "Studied the foundations of science and technology.",
+                  )}
                 </p>
               </div>
             </div>
@@ -1004,7 +1144,10 @@ export default function Home() {
               </h4>
               <p className="mt-1 text-sm text-zinc-500">2021 — 2023</p>
               <p className="mt-5 text-sm leading-7 text-zinc-400">
-                {t("Memimpin kegiatan organisasi ekstrakurikuler IT tingkat sekolah menengah, menyusun program kerja, dan menyelenggarakan sesi knowledge sharing seputar pemrograman bagi anggota.", "Led a high-school IT extracurricular organization, planned activities, and organized programming knowledge-sharing sessions for members.")}
+                {t(
+                  "Memimpin kegiatan organisasi ekstrakurikuler IT tingkat sekolah menengah, menyusun program kerja, dan menyelenggarakan sesi knowledge sharing seputar pemrograman bagi anggota.",
+                  "Led a high-school IT extracurricular organization, planned activities, and organized programming knowledge-sharing sessions for members.",
+                )}
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
                 <span className="rounded-lg bg-white/[0.05] px-3 py-2 text-xs text-zinc-400">
@@ -1033,15 +1176,21 @@ export default function Home() {
             <h2 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl">
               {t("Punya ide menarik?", "Have an exciting idea?")}
               <br />
-              <span className="text-gradient">{t("Mari wujudkan bersama.", "Let’s bring it to life.")}</span>
+              <span className="text-gradient">
+                {t("Mari wujudkan bersama.", "Let’s bring it to life.")}
+              </span>
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-base leading-8 text-zinc-400">
-              {t("Terbuka untuk peluang kerja, freelance, kolaborasi, dan diskusi seputar pengembangan produk digital.", "Open to job opportunities, freelance work, collaborations, and conversations about digital product development.")}
+              {t(
+                "Terbuka untuk peluang kerja, freelance, kolaborasi, dan diskusi seputar pengembangan produk digital.",
+                "Open to job opportunities, freelance work, collaborations, and conversations about digital product development.",
+              )}
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button asChild size="lg">
                 <a href="mailto:zoneandika@gmail.com">
-                  <Mail size={17} /> {t("Email Saya", "Email Me")} <ArrowUpRight size={16} />
+                  <Mail size={17} /> {t("Email Saya", "Email Me")}{" "}
+                  <ArrowUpRight size={16} />
                 </a>
               </Button>
               <Button asChild variant="outline" size="lg">
@@ -1050,7 +1199,8 @@ export default function Home() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <Send size={16} /> {t("Hubungi via WhatsApp", "Contact via WhatsApp")}
+                  <Send size={16} />{" "}
+                  {t("Hubungi via WhatsApp", "Contact via WhatsApp")}
                 </a>
               </Button>
             </div>
@@ -1103,11 +1253,11 @@ export default function Home() {
             href="#home"
             className="inline-flex items-center gap-2 text-xs text-zinc-400 transition hover:text-white"
           >
-            {t("Kembali ke atas", "Back to top")} <ArrowDown size={13} className="rotate-180" />
+            {t("Kembali ke atas", "Back to top")}{" "}
+            <ArrowDown size={13} className="rotate-180" />
           </a>
         </div>
       </footer>
     </main>
   );
 }
-
